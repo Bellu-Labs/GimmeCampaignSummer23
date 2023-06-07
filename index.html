@@ -11,25 +11,24 @@
 <body>
   <div class="form-container">
     <form id="campaign-form" method="POST">
-      <fieldset class="text-required">
-        <div class="row">
-          <input type="text" id="first-name" name="First Name" placeholder="First Name" required>
-          <input type="text" id="last-name" name="Last Name" placeholder="Last Name" required>
-          <input type="text" id="verification" name="Verification Code" placeholder="Verification Code" required>
-        </div>
-  
-        <div class="row">
-          <input type="email" id="email" name="Email" placeholder="Email" style="appearance:none;" required/>
-          <input type="tel" id="phone" name="Phone" placeholder="Phone" required>
-        </div>
-        
+      <fieldset class="row">
+        <input type="text" id="first-name" name="First Name" placeholder="First Name" required>
+        <input type="text" id="last-name" name="Last Name" placeholder="Last Name" required>
+        <input type="text" id="verification" name="Verification Code" placeholder="Verification Code" required>
+      </fieldset>
+
+      <fieldset class="row">
+        <input type="email" id="email" name="Email" placeholder="Email" style="appearance:none;" required/>
+        <input type="tel" id="phone" name="Phone" placeholder="Phone" required>
+      </fieldset>
+      <fieldset>
         <input type="text" id="street" name="Street" placeholder="Street" required>
-  
-        <div class="row">
-          <input type="text" id="city" name="City" placeholder="City" required>
-          <input type="text" id="state" name="State" placeholder="State" required>
-          <input type="text" id="zipcode" name="Zipcode" placeholder="Zipcode" required>
-        </div>
+      </fieldset>
+      
+      <fieldset class="row">
+        <input type="text" id="city" name="City" placeholder="City" required>
+        <input type="text" id="state" name="State" placeholder="State" required>
+        <input type="text" id="zipcode" name="Zipcode" placeholder="Zipcode" oninput="this.value = this.value.replace(/\D+/g, '')" required>
       </fieldset>
   
       <input class="action-button" type="submit" value="Submit">
@@ -39,31 +38,30 @@
             <span class="loader"><span class="loader-inner"></span></span>
         </div>
       </div>
-  
     </form>
   </div>
 </body>
 <script>
-  // clearForm();
+  clearForm();
 
   const loading = document.querySelector('.loading');
   const submit_button = document.querySelector('input[type="submit"]');
   var scriptURL = "https://script.google.com/macros/s/AKfycbylHbjjJI_di58OG6ZNUkrEwz9IbMUNhurjSMKVv6lZo0oK57SfiLrSAduMabDeqOs_/exec";
 
   const form = document.forms[0]
-  let fd = new FormData(form);
-  let today = new Date();
-  let date = today.getMonth()+1 + '/' + today.getDate() + '/' + today.getFullYear();
-  let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-  let dateTime = date + ' ' + time;
-  fd.append("Timestamp", dateTime);
-
-  console.log
 
   form.addEventListener('submit', e => {
-    e.preventDefault()
+    let fd = new FormData(form);
+    let today = new Date();
+    let date = today.getMonth()+1 + '/' + today.getDate() + '/' + today.getFullYear();
+    let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    let dateTime = date + ' ' + time;
+    fd.append("Timestamp", dateTime);
+    
+    e.preventDefault();
     loading.classList.remove('hidden');
     submit_button.classList.add('hidden');
+
     fetch(scriptURL, { 
       method: 'POST', 
       body: fd
@@ -72,7 +70,7 @@
       loading.classList.add('hidden');
       submit_button.classList.remove('hidden');
       window.location.href='completed.html';
-      // clearForm();
+      clearForm();
     })
     .catch(error => console.error('Error!', error.message))
   })

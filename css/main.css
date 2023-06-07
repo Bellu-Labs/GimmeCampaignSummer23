@@ -131,11 +131,6 @@ h1 {
   position: relative;
 }
 
-/*Hide all except first fieldset*/
-#campaign-form fieldset:not(:first-of-type) {
-  display: none;
-}
-
 /*inputs*/
 #campaign-form input,
 #campaign-form textarea {
