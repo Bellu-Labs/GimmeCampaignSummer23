@@ -1,0 +1,351 @@
+:root {
+  --blue1: #778996;
+  --blue2: #a4b0be;
+  --blue3: #bac8d8;
+  --blue4: #ccd1d7;
+  --blue5: #e5e8ea;
+
+  --light-tan: #ede7df;
+
+  --red1: #bf847a;
+  --red2: #e1c2bd;
+
+  --gray1: #3a3b3d;
+  --gray2: #525457;
+  --gray3: #75787c;
+  --gray4: #a5a9ae;
+  --gray5: #d2d2d2;
+  --gray6: #f2f2f2;
+  --white: #ffffff;
+
+  background-color: var(--white);
+}
+
+/*custom font*/
+@import url(https://fonts.googleapis.com/css?family=lora);
+
+/*basic reset*/
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  /* background: var(--blue1); /* fallback for old browsers */
+  /* background: -webkit-linear-gradient(
+    to left,
+    #0441a5,
+    #2a0845
+  ); Chrome 10-25, Safari 5.1-6 */
+}
+
+body {
+  /* height: 100%; */
+  font-family: lora, arial, verdana;
+}
+
+/* This is to stop mobile drag refresh */
+html,
+body {
+  overscroll-behavior-y: contain;
+}
+
+h1 {
+  margin-bottom: 1rem;
+}
+
+.max-width {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hidden {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.loading:not(.hidden) {
+  margin-top: 4rem;
+}
+
+.center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.loader {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 20%;
+  position: relative;
+  border: 10px solid var(--blue1);
+  top: 50%;
+  animation: loader 4000ms infinite;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(180deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  75% {
+    transform: rotate(360deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* end loading */
+
+/*form styles*/
+#campaign-form {
+  text-align: center;
+  position: relative;
+}
+
+#campaign-form fieldset {
+  background: var(--white);
+  border: 0 none;
+  border-radius: 0px;
+  /* box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4); */
+  /* padding: 20px 30px; */
+  box-sizing: border-box;
+
+  /*stacking fieldsets above each other*/
+  position: relative;
+}
+
+/*Hide all except first fieldset*/
+#campaign-form fieldset:not(:first-of-type) {
+  display: none;
+}
+
+/*inputs*/
+#campaign-form input,
+#campaign-form textarea {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 0px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: lora;
+  color: #2c3e50;
+  font-size: 16px;
+}
+
+#campaign-form input:focus,
+#campaign-form textarea:focus {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  border: 1px solid var(--blue1);
+  outline-width: 0;
+  transition: All 0.5s ease-in;
+  -webkit-transition: All 0.5s ease-in;
+  -moz-transition: All 0.5s ease-in;
+  -o-transition: All 0.5s ease-in;
+}
+
+/*buttons*/
+#campaign-form .action-button {
+  width: 100px;
+  background: var(--blue1);
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 25px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+  margin-top: 4rem;
+}
+
+#campaign-form .text-required .action-button {
+  margin-top: 0;
+}
+
+#campaign-form .action-button:hover,
+#campaign-form .action-button:focus {
+  box-shadow: 0 0 0 2px white, 0 0 0 3px var(--gray2);
+}
+
+#campaign-form .action-button:disabled:hover,
+#campaign-form .action-button:disabled:focus {
+  box-shadow: none;
+}
+
+#campaign-form .action-button-previous {
+  width: 100px;
+  background: var(--blue3);
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 25px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+}
+
+#campaign-form .action-button-previous:hover,
+#campaign-form .action-button-previous:focus {
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #c5c5f1;
+}
+
+/* Style for the fieldset */
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  display: none;
+}
+
+input[type="checkbox"] + label,
+input[type="radio"] + label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  padding: 0.5rem 0;
+  border-radius: 4px;
+  border: 2px solid #ccc;
+
+  cursor: pointer;
+  width: 100%;
+}
+
+input[type="checkbox"]:checked + label,
+input[type="radio"]:checked + label {
+  background-color: var(--blue1);
+  color: #fff;
+  border-color: var(--blue1);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+  /* Firefox */
+}
+
+label span {
+  padding: 0 0.75rem;
+}
+
+/* grid stuff */
+.two-column-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+}
+
+.two-column-grid div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.two-column-grid input[type="checkbox"] + label,
+.two-column-grid input[type="radio"] + label {
+  height: 100%;
+}
+
+/* Style for the Next button */
+.action-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.action-button:hover {
+  background-color: #0069d9;
+}
+
+/* success page */
+.wide {
+  width: 80%;
+  height: 80%;
+}
+
+.success-body {
+  /* background-color: var(--blue1); */
+  display: flex;
+  margin-top: 4rem;
+  justify-content: center;
+}
+
+.success-message {
+  /* background-color: var(--white); */
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+  /* box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3); */
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: var(--blue1);
+  color: var(--white);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+#campaign-form .action-button:disabled {
+  background-color: var(--gray5);
+}
+
+/* For bad inputs in text fields */
+.error {
+  background-color: var(--red2);
+  font-size: 12px;
+  margin-top: 0.5rem;
+}
+
+.no-link-display {
+  text-decoration: none;
+  color: var(--white);
+}
+
+.form-container {
+  max-width: 50rem;
+}
+
+/* media query for ipad and bigger */
+@media (min-width: 600px) {
+  .row {
+    display: flex;
+    gap: 1rem;
+  }
+}
